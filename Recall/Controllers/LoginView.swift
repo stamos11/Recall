@@ -35,16 +35,17 @@ class LoginView: UIView {
 extension LoginView {
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
+        layer.cornerRadius = 8
         
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 16
-        
+        stackView.spacing = 8
         
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
         usernameTextField.placeholder = "Username"
         usernameTextField.delegate = self
+        usernameTextField.backgroundColor = .lightGray.withAlphaComponent(0.3)
         
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.placeholder = "Email"
