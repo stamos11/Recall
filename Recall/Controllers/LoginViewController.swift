@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
+
 
 class LoginViewController: UIViewController {
     
     // MARK: -Components
-    
+    let userController = UserController()
     let logoView = UIImageView()
     let loginView = LoginView()
     let toggleButton = UIButton(type: .custom)
@@ -23,8 +25,36 @@ class LoginViewController: UIViewController {
         style()
         layout()
     }
-
+    
+    // Authentication
+    @objc func continueButtonTapped() {
+        
+        guard let email = loginView.emailTextField.text else {return }
+        guard let password = loginView.passwordTextField.text else {return}
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let error {
+                print(error.localizedDescription)
+            } else {
+                if let result {
+                    guard let username = self.loginView.usernameTextField.text else { return}
+                    let user = User(username: username, email: email)
+                    self.userController.saveUser(user: user, id: result.user.uid){ error in
+                        if let error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                    let alertNotification = UIAlertController(title: "Created account", message: nil, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default)
+                    alertNotification.addAction(action)
+                    self.present(alertNotification, animated: true)
+                }
+              
+            }
+        }
+    }
 }
+
+
 
 extension LoginViewController {
     
@@ -49,6 +79,7 @@ extension LoginViewController {
         continueButton.tintColor = .green
         continueButton.configuration?.cornerStyle = .capsule
         continueButton.clipsToBounds = true
+        continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         
     }
     
