@@ -35,29 +35,42 @@ class LoginViewController: UIViewController {
     
     // Authentication
     @objc func continueButtonTapped() {
-        
         guard let email = loginView.emailTextField.text else {return }
         guard let password = loginView.passwordTextField.text else {return}
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error {
-                print(error.localizedDescription)
-            } else {
-                if let result {
-                    guard let username = self.loginView.usernameTextField.text else { return}
-                    let user = User(username: username, email: email)
-                    self.userController.saveUser(user: user, id: result.user.uid){ error in
-                        if let error {
-                            print(error.localizedDescription)
+        if !isToggled {
+           
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if let error {
+                    print(error.localizedDescription)
+                } else {
+                    if let result {
+                        guard let username = self.loginView.usernameTextField.text else { return}
+                        let user = User(username: username, email: email)
+                        self.userController.saveUser(user: user, id: result.user.uid){ error in
+                            if let error {
+                                print(error.localizedDescription)
+                            }
                         }
+                        let mainVc = MainController()
+                        self.navigationController?.pushViewController(mainVc, animated:  true)
                     }
-                    let alertNotification = UIAlertController(title: "Created account", message: nil, preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: .default)
-                    alertNotification.addAction(action)
-                    self.present(alertNotification, animated: true)
+                  
                 }
-              
+            }
+
+        } else {
+            Auth.auth().signIn(withEmail: email, password: password) { sucess, error in
+                if let error {
+                    print(error.localizedDescription)
+                }
+                if let sucess {
+                    let mainVc = MainController()
+                    self.navigationController?.pushViewController(mainVc, animated:  true)
+                    print("User has logged in")
+                }
             }
         }
+        
     }
     // Actions
     @objc func toggleIsTapped() {
@@ -66,16 +79,17 @@ class LoginViewController: UIViewController {
     }
     private func toggled() {
         if isToggled {
-            loginView.emailTextField.isHidden = true
+            loginView.usernameTextField.isHidden = true
             toggleButton.setTitle("Dont have an account?", for: .normal)
             continueButton.setTitle("Start", for: .normal)
         } else {
-            loginView.emailTextField.isHidden = false
+            loginView.usernameTextField.isHidden = false
             toggleButton.setTitle("Already have an account?", for: .normal)
             continueButton.setTitle("Sign up", for: .normal)
         }
         
     }
+
     
 }
 

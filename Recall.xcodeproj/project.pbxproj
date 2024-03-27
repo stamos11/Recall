@@ -21,6 +21,7 @@
 		3E1CE0FF2BB1D1C30038E90B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1CE0FE2BB1D1C30038E90B /* UserController.swift */; };
 		3E1CE1012BB1D2270038E90B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3E1CE1002BB1D2270038E90B /* FirebaseFirestore */; };
 		3E5DB4302BAE09B200B17D0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5DB42F2BAE09B200B17D0B /* LoginView.swift */; };
+		3EDB12822BB450E600BABF35 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB12812BB450E600BABF35 /* MainController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		3E1CE0FA2BB1C4660038E90B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3E1CE0FE2BB1D1C30038E90B /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		3E5DB42F2BAE09B200B17D0B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3EDB12812BB450E600BABF35 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				3E14D64A2BAB46B000A1F754 /* LoginViewController.swift */,
 				3E5DB42F2BAE09B200B17D0B /* LoginView.swift */,
+				3EDB12812BB450E600BABF35 /* MainController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				3E5DB4302BAE09B200B17D0B /* LoginView.swift in Sources */,
 				3E1CE0FF2BB1D1C30038E90B /* UserController.swift in Sources */,
 				3E14D64B2BAB46B000A1F754 /* LoginViewController.swift in Sources */,
+				3EDB12822BB450E600BABF35 /* MainController.swift in Sources */,
 				3E14D6472BAB46B000A1F754 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
