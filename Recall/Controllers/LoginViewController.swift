@@ -18,6 +18,13 @@ class LoginViewController: UIViewController {
     let toggleButton = UIButton(type: .custom)
     let continueButton = UIButton(type: .custom)
     
+    var isToggled = false {
+        didSet {
+            toggled()
+        }
+    }
+  
+    
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -52,6 +59,24 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    // Actions
+    @objc func toggleIsTapped() {
+        isToggled.toggle()
+        
+    }
+    private func toggled() {
+        if isToggled {
+            loginView.emailTextField.isHidden = true
+            toggleButton.setTitle("Dont have an account?", for: .normal)
+            continueButton.setTitle("Start", for: .normal)
+        } else {
+            loginView.emailTextField.isHidden = false
+            toggleButton.setTitle("Already have an account?", for: .normal)
+            continueButton.setTitle("Sign up", for: .normal)
+        }
+        
+    }
+    
 }
 
 
@@ -71,6 +96,7 @@ extension LoginViewController {
         toggleButton.titleLabel?.font = UIFont(name: "Avenir", size: 10) ?? .systemFont(ofSize: 10)
         toggleButton.setTitle("Already have an account?", for: .normal)
         toggleButton.tintColor = .systemRed
+        toggleButton.addTarget(self, action: #selector(toggleIsTapped), for: .touchUpInside)
         
         continueButton.translatesAutoresizingMaskIntoConstraints = false
         continueButton.configuration = .filled()
