@@ -6,22 +6,37 @@
 //
 
 import  UIKit
+import FirebaseAuth
 
 class WelcomeController: UIViewController {
     
     
-    //MARK  -Components
+    //MARK:  -Components
     let label = UILabel()
     let welcomeImage = UIImageView()
   
     
     
-    // MARK -Lifecycle
+    // MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         style()
         layout()
+        
+        checkAuth()
+    }
+//    MARK: - Check Authentication
+    func checkAuth() {
+        
+        if  Auth.auth().currentUser != nil {
+            print("we got user")
+            let mainVc = MainController()
+            navigationController?.pushViewController(mainVc, animated: true)
+        } else {
+            print("no user")
+            let loginVC = LoginViewController()
+            navigationController?.pushViewController(loginVC, animated: true)
+        }
     }
 }
 
