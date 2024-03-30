@@ -19,9 +19,8 @@ class MainController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
         style()
-
         layout()
         
     }
@@ -35,7 +34,7 @@ extension MainController {
     func style() {
         view.addSubview(logOutButton)
         view.addSubview(levelTableView)
-        //view.bringSubviewToFront(levelTableView)
+        
         
         levelTableView.translatesAutoresizingMaskIntoConstraints = false
         logOutButton.translatesAutoresizingMaskIntoConstraints = false
@@ -45,43 +44,30 @@ extension MainController {
         logOutButton.backgroundColor = .darkGray
         logOutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
         
-        let tableViewFrame = CGRect(x: 0, y: 100, width: 200, height: 200)
-        levelTableView = UITableView(frame: view.bounds, style: .plain)
+        
+        
         levelTableView.delegate = self
         levelTableView.dataSource = self
-        levelTableView.reloadData()
         levelTableView.register(UITableViewCell.self, forCellReuseIdentifier: "levelCell")
+        levelTableView.reloadData()
         
     }
     
     func layout() {
         
-        
+        // TableView
         NSLayoutConstraint.activate([
-                  levelTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                  levelTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                  levelTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                  levelTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+                        levelTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                        levelTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                        levelTableView.topAnchor.constraint(equalTo: logOutButton.bottomAnchor),
+                        levelTableView.heightAnchor.constraint(equalToConstant: 400)
               ])
               
-              // Setup constraints for button
+              // Button
               NSLayoutConstraint.activate([
                   logOutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
                   logOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
               ])
-//        NSLayoutConstraint.activate([
-//            logOutButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1),
-//            logOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-//            logOutButton.heightAnchor.constraint(equalToConstant: 50),
-//            logOutButton.widthAnchor.constraint(equalToConstant: 100)
-//        ])
-//        
-//        NSLayoutConstraint.activate([
-//            levelTableView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
-//            levelTableView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
-//            view.trailingAnchor.constraint(equalToSystemSpacingAfter: levelTableView.trailingAnchor, multiplier: 2),
-//            levelTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
     }
     
     //MARK: - Actions
@@ -100,7 +86,7 @@ extension MainController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = levelTableView.dequeueReusableCell(withIdentifier: "levelCell", for: indexPath)
-        cell.textLabel?.text = " mina and nikos"
+        cell.textLabel?.text = levels[indexPath.row]
         
         return cell
     }
