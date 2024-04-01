@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class MainController: UIViewController {
     
@@ -72,6 +73,13 @@ extension MainController {
     
     //MARK: - Actions
     @objc func logoutTapped() {
+        do {
+            try Auth.auth().signOut()
+            Router.shared.popToRoot()
+        } catch {
+            print(error.localizedDescription)
+            }
+            
         
     }
 }

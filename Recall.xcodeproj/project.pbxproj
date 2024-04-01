@@ -20,6 +20,9 @@
 		3E1CE0FD2BB1CC2F0038E90B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3E1CE0FC2BB1CC2F0038E90B /* FirebaseAuth */; };
 		3E1CE0FF2BB1D1C30038E90B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1CE0FE2BB1D1C30038E90B /* UserController.swift */; };
 		3E1CE1012BB1D2270038E90B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3E1CE1002BB1D2270038E90B /* FirebaseFirestore */; };
+		3E2CA9312BBB298600AE4860 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA9302BBB298600AE4860 /* Router.swift */; };
+		3E2CA9332BBB30D100AE4860 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA9322BBB30D100AE4860 /* AlertPresenter.swift */; };
+		3E2CA9352BBB357A00AE4860 /* LevelsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA9342BBB357A00AE4860 /* LevelsController.swift */; };
 		3E5DB4302BAE09B200B17D0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5DB42F2BAE09B200B17D0B /* LoginView.swift */; };
 		3EDB12822BB450E600BABF35 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB12812BB450E600BABF35 /* MainController.swift */; };
 		3EDB12842BB4610A00BABF35 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB12832BB4610A00BABF35 /* WelcomeController.swift */; };
@@ -34,6 +37,9 @@
 		3E1CE0F72BB1C2ED0038E90B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E1CE0FA2BB1C4660038E90B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3E1CE0FE2BB1D1C30038E90B /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		3E2CA9302BBB298600AE4860 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		3E2CA9322BBB30D100AE4860 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		3E2CA9342BBB357A00AE4860 /* LevelsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsController.swift; sourceTree = "<group>"; };
 		3E5DB42F2BAE09B200B17D0B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3EDB12812BB450E600BABF35 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		3EDB12832BB4610A00BABF35 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -74,6 +80,7 @@
 				3E5DB42F2BAE09B200B17D0B /* LoginView.swift */,
 				3EDB12812BB450E600BABF35 /* MainController.swift */,
 				3EDB12832BB4610A00BABF35 /* WelcomeController.swift */,
+				3E2CA9342BBB357A00AE4860 /* LevelsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -97,6 +104,8 @@
 		3E14D6452BAB46B000A1F754 /* Recall */ = {
 			isa = PBXGroup;
 			children = (
+				3E2CA92F2BBB294C00AE4860 /* Router */,
+				3E2CA92E2BBB28AB00AE4860 /* AlertPresenter */,
 				3E1CE0F92BB1C44C0038E90B /* Users */,
 				3E1CE0F72BB1C2ED0038E90B /* GoogleService-Info.plist */,
 				3B57D1B42BAE0557000045D0 /* Files */,
@@ -112,6 +121,22 @@
 				3E1CE0FE2BB1D1C30038E90B /* UserController.swift */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		3E2CA92E2BBB28AB00AE4860 /* AlertPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				3E2CA9322BBB30D100AE4860 /* AlertPresenter.swift */,
+			);
+			path = AlertPresenter;
+			sourceTree = "<group>";
+		};
+		3E2CA92F2BBB294C00AE4860 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				3E2CA9302BBB298600AE4860 /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,10 +221,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E2CA9312BBB298600AE4860 /* Router.swift in Sources */,
 				3E1CE0FB2BB1C4660038E90B /* User.swift in Sources */,
 				3EDB12842BB4610A00BABF35 /* WelcomeController.swift in Sources */,
 				3E5DB4302BAE09B200B17D0B /* LoginView.swift in Sources */,
+				3E2CA9352BBB357A00AE4860 /* LevelsController.swift in Sources */,
 				3E1CE0FF2BB1D1C30038E90B /* UserController.swift in Sources */,
+				3E2CA9332BBB30D100AE4860 /* AlertPresenter.swift in Sources */,
 				3E14D64B2BAB46B000A1F754 /* LoginViewController.swift in Sources */,
 				3EDB12822BB450E600BABF35 /* MainController.swift in Sources */,
 				3E14D6472BAB46B000A1F754 /* AppDelegate.swift in Sources */,
@@ -341,6 +369,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -368,6 +397,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

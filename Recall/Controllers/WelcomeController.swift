@@ -23,6 +23,9 @@ class WelcomeController: UIViewController {
         style()
         layout()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         checkAuth()
     }
 //    MARK: - Check Authentication
@@ -30,12 +33,10 @@ class WelcomeController: UIViewController {
         
         if  Auth.auth().currentUser != nil {
             print("we got user")
-            let mainVc = MainController()
-            navigationController?.pushViewController(mainVc, animated: true)
+            Router.shared.push(viewController: MainController())
         } else {
             print("no user")
-            let loginVC = LoginViewController()
-            navigationController?.pushViewController(loginVC, animated: true)
+            Router.shared.push(viewController: LoginViewController())
         }
     }
 }

@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
     let toggleButton = UIButton(type: .custom)
     let continueButton = UIButton(type: .custom)
     
+    
+    
     var isToggled = false {
         didSet {
             toggled()
@@ -29,8 +31,9 @@ class LoginViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        style()
         layout()
+        style()
+        
     }
     
     // Authentication
@@ -51,8 +54,7 @@ class LoginViewController: UIViewController {
                                 print(error.localizedDescription)
                             }
                         }
-                        let mainVc = MainController()
-                        self.navigationController?.pushViewController(mainVc, animated:  true)
+                        Router.shared.push(viewController: MainController())
                     }
                   
                 }
@@ -64,8 +66,8 @@ class LoginViewController: UIViewController {
                     print(error.localizedDescription)
                 }
                 if let sucess {
-                    let mainVc = MainController()
-                    self.navigationController?.pushViewController(mainVc, animated:  true)
+                    
+                    Router.shared.push(viewController: MainController())
                     print("User has logged in")
                 }
             }
@@ -98,6 +100,8 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     
     private func style() {
+        
+        Router.shared.navigationController.isNavigationBarHidden = true
         logoView.translatesAutoresizingMaskIntoConstraints = false
         logoView.image = UIImage(imageLiteralResourceName: "fasistas")
         logoView.contentMode = .scaleAspectFit
