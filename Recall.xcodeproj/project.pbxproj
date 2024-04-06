@@ -23,6 +23,8 @@
 		3E2CA9312BBB298600AE4860 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA9302BBB298600AE4860 /* Router.swift */; };
 		3E2CA9332BBB30D100AE4860 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA9322BBB30D100AE4860 /* AlertPresenter.swift */; };
 		3E2CA9352BBB357A00AE4860 /* LevelsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2CA9342BBB357A00AE4860 /* LevelsController.swift */; };
+		3E4F9B2F2BC193EB00CC8794 /* CardCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F9B2E2BC193EB00CC8794 /* CardCellView.swift */; };
+		3E4F9B362BC1B1A500CC8794 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F9B352BC1B1A500CC8794 /* Cards.swift */; };
 		3E5DB4302BAE09B200B17D0B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5DB42F2BAE09B200B17D0B /* LoginView.swift */; };
 		3EDB12822BB450E600BABF35 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB12812BB450E600BABF35 /* MainController.swift */; };
 		3EDB12842BB4610A00BABF35 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB12832BB4610A00BABF35 /* WelcomeController.swift */; };
@@ -40,6 +42,8 @@
 		3E2CA9302BBB298600AE4860 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3E2CA9322BBB30D100AE4860 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		3E2CA9342BBB357A00AE4860 /* LevelsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsController.swift; sourceTree = "<group>"; };
+		3E4F9B2E2BC193EB00CC8794 /* CardCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellView.swift; sourceTree = "<group>"; };
+		3E4F9B352BC1B1A500CC8794 /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		3E5DB42F2BAE09B200B17D0B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3EDB12812BB450E600BABF35 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		3EDB12832BB4610A00BABF35 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,9 @@
 		3E14D6452BAB46B000A1F754 /* Recall */ = {
 			isa = PBXGroup;
 			children = (
+				3E4F9B342BC1B19500CC8794 /* Model */,
+				3E4F9B312BC1A86900CC8794 /* CoreAnimation */,
+				3E4F9B302BC1946300CC8794 /* Views */,
 				3E2CA92F2BBB294C00AE4860 /* Router */,
 				3E2CA92E2BBB28AB00AE4860 /* AlertPresenter */,
 				3E1CE0F92BB1C44C0038E90B /* Users */,
@@ -137,6 +144,29 @@
 				3E2CA9302BBB298600AE4860 /* Router.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		3E4F9B302BC1946300CC8794 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3E4F9B2E2BC193EB00CC8794 /* CardCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3E4F9B312BC1A86900CC8794 /* CoreAnimation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreAnimation;
+			sourceTree = "<group>";
+		};
+		3E4F9B342BC1B19500CC8794 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E4F9B352BC1B1A500CC8794 /* Cards.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +254,8 @@
 				3E2CA9312BBB298600AE4860 /* Router.swift in Sources */,
 				3E1CE0FB2BB1C4660038E90B /* User.swift in Sources */,
 				3EDB12842BB4610A00BABF35 /* WelcomeController.swift in Sources */,
+				3E4F9B362BC1B1A500CC8794 /* Cards.swift in Sources */,
+				3E4F9B2F2BC193EB00CC8794 /* CardCellView.swift in Sources */,
 				3E5DB4302BAE09B200B17D0B /* LoginView.swift in Sources */,
 				3E2CA9352BBB357A00AE4860 /* LevelsController.swift in Sources */,
 				3E1CE0FF2BB1D1C30038E90B /* UserController.swift in Sources */,

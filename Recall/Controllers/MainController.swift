@@ -98,5 +98,9 @@ extension MainController: UITableViewDataSource {
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Router.shared.push(viewController: LevelsController())
+        
+    }
 
 }
