@@ -83,7 +83,10 @@ extension LevelsController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CardCell else {  return UICollectionViewCell()  }
-        cell.card = cards[indexPath.row]
+//        cell.card?.animalName = cards[indexPath.row]
+        let card = cards[indexPath.item]
+        cell.labelCell.text = card.animalName
+        
         
         
         
@@ -94,7 +97,11 @@ extension LevelsController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let card = collectionView.cellForItem(at: indexPath) as? CardCell else {  return }
         card.flip()
-        matchedCards.append(cards[indexPath.row])
+        if indexPath.row > 0 {
+            matchedCards.append(cards[indexPath.row - 1])
+        } else {
+            print("out of range")
+        }
         
     }
     
