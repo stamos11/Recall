@@ -65,11 +65,11 @@ class LoginViewController: UIViewController {
                 if let error {
                     print(error.localizedDescription)
                 }
-                if let sucess {
+              //  if let sucess {
                     
                     Router.shared.push(viewController: MainController())
                     print("User has logged in")
-                }
+                //}
             }
         }
         

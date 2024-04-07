@@ -11,26 +11,50 @@ import UIKit
 
 class CardCell: UICollectionViewCell {
     
-    var card: Cards?
-    let labelCell = UILabel()
-    var isFlipped: Bool = false {
+    var card: Card? {
         didSet {
-            if isFlipped {
-                labelCell.backgroundColor = .brown
-                UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil)
-            } else {
+            guard let card = card else {return}
+            labelCell.text = card.animalName
+            
+            if card.isFlipped {
+                
                 labelCell.backgroundColor = .green
-                UIView.transition(with: self.contentView, duration: 2, options: .transitionFlipFromRight, animations: nil)
+                UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil)
+
+            } else {
+                labelCell.backgroundColor = .brown
+                UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromRight, animations: nil)
+
+            }
+            if card.isMatched {
+                labelCell.isHidden = true
             }
         }
     }
+    let labelCell = UILabel()
     
+    
+//    var isFlipped: Bool = false {
+//        didSet {
+//            card?.isFlipped = true
+//            if isFlipped {
+//                labelCell.backgroundColor = .brown
+//                UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil)
+//            } else {
+//                labelCell.backgroundColor = .green
+//                UIView.transition(with: self.contentView, duration: 2, options: .transitionFlipFromRight, animations: nil)
+//            }
+//        }
+//    }
+//    
     
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
+        
+        
         
     }
     
@@ -40,7 +64,8 @@ class CardCell: UICollectionViewCell {
     
     
     func flip() {
-        isFlipped.toggle()
+        card?.isFlipped.toggle()
+       // isFlipped.toggle()
         
         
     }

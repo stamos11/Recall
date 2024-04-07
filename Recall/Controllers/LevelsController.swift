@@ -12,29 +12,42 @@ class LevelsController: UIViewController {
     
     // MARK: -Components
     
-    var cards = [Cards(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
-                 Cards(animalName: "Monkey", animalImage: nil, isMatched: false, isFlipped: false),
-                 Cards(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
-                 Cards(animalName: "Monkey", animalImage: nil, isMatched: false, isFlipped: false)
+    var levelsCollectionView: UICollectionView!
+    var cards = [Card(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
+                 Card(animalName: "Monkey", animalImage: nil, isMatched: false, isFlipped: false),
+                 Card(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
+                 Card(animalName: "Monkey", animalImage: nil, isMatched: false, isFlipped: false)
     ]
-    var matchedCards: [Cards] = [] {
+
+    var matchedCards: [(Card,Int)] = [] {
         didSet {
             if matchedCards.count == 2 {
-                if matchedCards[0].animalName == matchedCards[1].animalName {
+                if matchedCards[0].0.animalName == matchedCards[1].0.animalName {
                     print("Matched")
-                    var card1 = matchedCards[0]
-                    
-                    self.cards.removeAll  {$0.animalName == card1.animalName}
+                    cards[matchedCards[0].1].isMatched = true
+                    cards[matchedCards[1].1].isMatched = true
+                    //self.cards.removeAll  {$0.animalName == matchedCards[0].0.animalName}
+                    DispatchQueue.main.async {
+                        self.levelsCollectionView.reloadData()
+                    }
                     
                     print(cards)
                     matchedCards.removeAll()
-                    print(cards)
                 } else {
+                    cards[matchedCards[0].1].isFlipped = false
+                    cards[matchedCards[1].1].isFlipped = false
+                    matchedCards.removeAll()
+                    print(cards)
+                    DispatchQueue.main.async {
+                        self.levelsCollectionView.reloadData()
+                    }
                     
                 }
             }
         }
     }
+    
+    
     // MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +55,14 @@ class LevelsController: UIViewController {
 
     }
     
+    
 }
 
 extension LevelsController {
     
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        let levelsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        levelsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         levelsCollectionView.isScrollEnabled = false
         
@@ -83,27 +97,33 @@ extension LevelsController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CardCell else {  return UICollectionViewCell()  }
-//        cell.card?.animalName = cards[indexPath.row]
-        let card = cards[indexPath.item]
-        cell.labelCell.text = card.animalName
-        
-        
-        
-        
+
+        cell.card = cards[indexPath.item]
+
         
         return cell
         
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let card = collectionView.cellForItem(at: indexPath) as? CardCell else {  return }
-        card.flip()
-        if indexPath.row > 0 {
-            matchedCards.append(cards[indexPath.row - 1])
-        } else {
-            print("out of range")
-        }
         
+      //  card.flip()
+        
+        let matchedCard = (card.card!, indexPath.item)
+        matchedCards.append(matchedCard)
+        
+        card.card?.isFlipped.toggle()
+        
+//        if indexPath.row > 0 {
+//            matchedCards.append(cards[indexPath.row - 1])
+//        } else {
+//            print("out of range")
+//        }
+//        
     }
+    
     
 
 }

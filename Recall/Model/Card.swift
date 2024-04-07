@@ -5,10 +5,9 @@
 //  Created by stamoulis nikolaos on 6/4/24.
 //
 
-import Foundation
 import UIKit
 
-struct Cards {
+struct Card {
     
     let animalName: String?
     let animalImage: UIImage?
