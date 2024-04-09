@@ -5,7 +5,6 @@
 //  Created by stamoulis nikolaos on 6/4/24.
 //
 
-import Foundation
 import UIKit
 
 
@@ -27,48 +26,25 @@ class CardCell: UICollectionViewCell {
 
             }
             if card.isMatched {
-                labelCell.isHidden = true
+                self.isHidden = true
             }
         }
     }
+    
     let labelCell = UILabel()
-    
-    
-//    var isFlipped: Bool = false {
-//        didSet {
-//            card?.isFlipped = true
-//            if isFlipped {
-//                labelCell.backgroundColor = .brown
-//                UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil)
-//            } else {
-//                labelCell.backgroundColor = .green
-//                UIView.transition(with: self.contentView, duration: 2, options: .transitionFlipFromRight, animations: nil)
-//            }
-//        }
-//    }
-//    
-    
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
         
-        
-        
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    func flip() {
-        card?.isFlipped.toggle()
-       // isFlipped.toggle()
-        
-        
-    }
     
     func configureCell() {
         contentView.addSubview(labelCell)

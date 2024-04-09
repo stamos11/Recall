@@ -13,6 +13,7 @@ class LevelsController: UIViewController {
     // MARK: -Components
     
     var levelsCollectionView: UICollectionView!
+    
     var cards = [Card(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
                  Card(animalName: "Monkey", animalImage: nil, isMatched: false, isFlipped: false),
                  Card(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
@@ -26,9 +27,12 @@ class LevelsController: UIViewController {
                     print("Matched")
                     cards[matchedCards[0].1].isMatched = true
                     cards[matchedCards[1].1].isMatched = true
-                    //self.cards.removeAll  {$0.animalName == matchedCards[0].0.animalName}
+                    
+                    let firstIndexPath = IndexPath(row: matchedCards[0].1, section: 0)
+                    let secondIndexPath = IndexPath(row: matchedCards[1].1, section: 0)
+                    
                     DispatchQueue.main.async {
-                        self.levelsCollectionView.reloadData()
+                        self.levelsCollectionView.reloadItems(at: [firstIndexPath, secondIndexPath])
                     }
                     
                     print(cards)
@@ -36,11 +40,14 @@ class LevelsController: UIViewController {
                 } else {
                     cards[matchedCards[0].1].isFlipped = false
                     cards[matchedCards[1].1].isFlipped = false
-                    matchedCards.removeAll()
                     print(cards)
+                    let firstIndexPath = IndexPath(row: matchedCards[0].1, section: 0)
+                    let secondIndexPath = IndexPath(row: matchedCards[1].1, section: 0)
+                    
                     DispatchQueue.main.async {
-                        self.levelsCollectionView.reloadData()
+                        self.levelsCollectionView.reloadItems(at: [firstIndexPath, secondIndexPath])
                     }
+                    matchedCards.removeAll()
                     
                 }
             }
@@ -79,10 +86,7 @@ extension LevelsController {
         levelsCollectionView.dataSource = self
         levelsCollectionView.register(CardCell.self, forCellWithReuseIdentifier: "Cell")
     }
-    
-    // Action
-    
-    
+
     
 }
 
@@ -99,31 +103,20 @@ extension LevelsController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CardCell else {  return UICollectionViewCell()  }
 
         cell.card = cards[indexPath.item]
-
-        
         return cell
         
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let card = collectionView.cellForItem(at: indexPath) as? CardCell else {  return }
+        guard let cardCell = collectionView.cellForItem(at: indexPath) as? CardCell else {  return }
         
-      //  card.flip()
-        
-        let matchedCard = (card.card!, indexPath.item)
+        let matchedCard = (cardCell.card!, indexPath.item)
         matchedCards.append(matchedCard)
         
-        card.card?.isFlipped.toggle()
-        
-//        if indexPath.row > 0 {
-//            matchedCards.append(cards[indexPath.row - 1])
-//        } else {
-//            print("out of range")
-//        }
-//        
+        cardCell.card?.flip()
+
     }
-    
     
 
 }

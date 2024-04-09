@@ -13,4 +13,8 @@ struct Card {
     let animalImage: UIImage?
     var isMatched: Bool
     var isFlipped: Bool
+    
+    mutating func flip() {
+        isFlipped.toggle()
+    }
 }
