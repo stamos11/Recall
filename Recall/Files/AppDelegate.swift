@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .white
-//        window?.rootViewController = Router.shared.navigationController
-//        Router.shared.start()
-        window?.rootViewController = LevelsController()
+        window?.rootViewController = Router.shared.navigationController
+        Router.shared.start()
+       // window?.rootViewController = LevelsController()
         return true
     }
 
