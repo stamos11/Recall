@@ -73,3 +73,6 @@ extension WelcomeController {
 
     }
 }
+#Preview {
+    WelcomeController()
+}

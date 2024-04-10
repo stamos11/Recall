@@ -90,3 +90,7 @@ extension LoginView: UITextFieldDelegate {
     }
     
 }
+
+#Preview {
+    LoginView()
+}
