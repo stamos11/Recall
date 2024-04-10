@@ -13,6 +13,9 @@ class MainController: UIViewController {
     
     // MARK: - componets
     
+    let levelsController = LevelsController()
+    let gameController = GameController()
+    
     var logOutButton =  UIButton()
     var levelTableView = UITableView()
     var levels: [String] = ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5"]
@@ -25,7 +28,6 @@ class MainController: UIViewController {
         layout()
         
     }
-    
 }
 
 extension MainController {
@@ -99,8 +101,26 @@ extension MainController: UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Router.shared.push(viewController: LevelsController())
+        var cards: [Card] = []
+        switch indexPath.row {
+        case 0:
+            cards = gameController.generateCards(level: 2)
+        case 1:
+            cards = gameController.generateCards(level: 4)
+        case 2:
+            cards = gameController.generateCards(level: 8)
+        case 3:
+            cards = gameController.generateCards(level: 12)
+        default:
+            break
+        }
+        levelsController.cards = cards
+        Router.shared.push(viewController: levelsController)
         
     }
 
+}
+
+#Preview {
+    MainController()
 }
