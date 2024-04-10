@@ -13,13 +13,10 @@ class LevelsController: UIViewController {
     // MARK: -Components
     
     var levelsCollectionView: UICollectionView!
+    var nextLevelButton =  UIButton()
     
-    var cards = [Card(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
-                 Card(animalName: "Monkey", animalImage: nil, isMatched: false, isFlipped: false),
-                 Card(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
-                 Card(animalName: "Monkey", animalImage: nil, isMatched: false, isFlipped: false)
-    ]
-
+    var cards: [Card] = []
+    
     var matchedCards: [(Card,Int)] = [] {
         didSet {
             if matchedCards.count == 2 {
@@ -58,11 +55,35 @@ class LevelsController: UIViewController {
     // MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButton()
         setupCollectionView()
-
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        levelsCollectionView.reloadData()
+    }
     
+}
+
+extension LevelsController {
+    
+    func setupButton() {
+        view.addSubview(nextLevelButton)
+        nextLevelButton.translatesAutoresizingMaskIntoConstraints  = false
+        nextLevelButton.setTitle("Next Level", for: .normal)
+        nextLevelButton.setTitleColor(.black, for: .normal)
+        nextLevelButton.layer.cornerRadius = 8
+        nextLevelButton.backgroundColor = .orange
+        
+        NSLayoutConstraint.activate([
+            nextLevelButton.widthAnchor.constraint(equalToConstant: 100),
+            nextLevelButton.heightAnchor.constraint(equalToConstant: 40),
+            nextLevelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            nextLevelButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            
+        ])
+    }
 }
 
 extension LevelsController {
@@ -71,7 +92,7 @@ extension LevelsController {
         let layout = UICollectionViewFlowLayout()
         levelsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        levelsCollectionView.isScrollEnabled = false
+        levelsCollectionView.isScrollEnabled = true
         
         view.addSubview(levelsCollectionView)
         
@@ -79,7 +100,7 @@ extension LevelsController {
         NSLayoutConstraint.activate([
             levelsCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             levelsCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            levelsCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            levelsCollectionView.topAnchor.constraint(equalTo: nextLevelButton.bottomAnchor, constant: 20),
             levelsCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         levelsCollectionView.delegate = self
@@ -123,11 +144,13 @@ extension LevelsController: UICollectionViewDataSource {
 extension LevelsController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfColumns: CGFloat = 2
+        let numberOfColumns: CGFloat = CGFloat(cards.count > 8 ? 4 : 2)
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         
         let widthPerItem = (collectionView.frame.width / numberOfColumns) - layout.minimumInteritemSpacing
-        return CGSize(width: widthPerItem, height: widthPerItem * 1.2)
+        let heightPerItem = (collectionView.frame.height / CGFloat( CGFloat(cards.count) / numberOfColumns)) - layout.minimumLineSpacing
+        
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -137,4 +160,8 @@ extension LevelsController: UICollectionViewDelegateFlowLayout {
         return 10
     }
 
+}
+
+#Preview {
+    LevelsController()
 }
