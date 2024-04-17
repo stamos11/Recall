@@ -15,7 +15,11 @@ class LevelsController: UIViewController {
     var levelsCollectionView: UICollectionView!
     var nextLevelButton =  UIButton()
     
-    var cards: [Card] = []
+    var cards: [Card] = [] {
+        didSet {
+            print("cards: \(cards)\n")
+        }
+    }
     
     var matchedCards: [(Card,Int)] = [] {
         didSet {
@@ -28,7 +32,7 @@ class LevelsController: UIViewController {
                     let firstIndexPath = IndexPath(row: matchedCards[0].1, section: 0)
                     let secondIndexPath = IndexPath(row: matchedCards[1].1, section: 0)
                     
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
                         self.levelsCollectionView.reloadItems(at: [firstIndexPath, secondIndexPath])
                     }
                     
@@ -41,7 +45,7 @@ class LevelsController: UIViewController {
                     let firstIndexPath = IndexPath(row: matchedCards[0].1, section: 0)
                     let secondIndexPath = IndexPath(row: matchedCards[1].1, section: 0)
                     
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                         self.levelsCollectionView.reloadItems(at: [firstIndexPath, secondIndexPath])
                     }
                     matchedCards.removeAll()
@@ -57,12 +61,17 @@ class LevelsController: UIViewController {
         super.viewDidLoad()
         setupButton()
         setupCollectionView()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         levelsCollectionView.reloadData()
     }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        cards.removeAll()
+//    }
     
 }
 
@@ -106,6 +115,8 @@ extension LevelsController {
         levelsCollectionView.delegate = self
         levelsCollectionView.dataSource = self
         levelsCollectionView.register(CardCell.self, forCellWithReuseIdentifier: "Cell")
+        
+
     }
 
     

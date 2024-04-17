@@ -11,24 +11,40 @@ import UIKit
 class CardCell: UICollectionViewCell {
     
     var card: Card? {
+        
         didSet {
-            guard let card = card else {return}
-            labelCell.text = card.animalName
+            guard var card = card else {return}
+            
             
             if card.isFlipped {
+                if labelCell.backgroundColor == .brown {
+                    
+                    UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil) { _ in
+                        self.labelCell.backgroundColor = .green
+                        self.labelCell.text = card.animalName
+                    }
+                   
+                }
                 
-                labelCell.backgroundColor = .green
-                UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromLeft, animations: nil)
-
             } else {
+                
+               
+                if labelCell.backgroundColor == .green {
+                    UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromRight, animations: nil)
+                 
+                }
                 labelCell.backgroundColor = .brown
-                UIView.transition(with: self.contentView, duration: 0.5, options: .transitionFlipFromRight, animations: nil)
-
+                labelCell.text = ""
+                
             }
             if card.isMatched {
                 self.isHidden = true
+            } else {
+                self.isHidden = false
             }
+            print("Card: \(card)")
         }
+        
     }
     
     let labelCell = UILabel()

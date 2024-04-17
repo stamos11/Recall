@@ -17,6 +17,7 @@ struct Card {
     mutating func flip() {
         isFlipped.toggle()
     }
+ 
     
   
 }
@@ -24,7 +25,8 @@ struct Card {
 
 class GameController {
     
-   static var mockedCards =  [Card(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
+    
+    static var mockedCards =  [Card(animalName: "Luna", animalImage: nil, isMatched: false, isFlipped: false),
                                Card(animalName: "Monkey", animalImage: nil, isMatched: false, isFlipped: false),
                                Card(animalName: "nikos", animalImage: nil, isMatched: false, isFlipped: false),
                                Card(animalName: "mike", animalImage: nil, isMatched: false, isFlipped: false),
@@ -39,10 +41,10 @@ class GameController {
     
     
     func generateCards(level: Int) -> [Card] {
-        
         var cards: [Card] = []
         
         
+       
         for i in 0...level - 1 {
             let card = GameController.mockedCards[i]
             cards.append(card)
@@ -50,20 +52,9 @@ class GameController {
         }
         
         return cards.shuffled()
-        
-//        switch level {
-//        case 1:
-//            
-//            print("level 1")
-//        case 2:
-//            print("level 2")
-//        case 3:
-//            print("level 3")
-//        case 4:
-//            print("level 4")
-//        default:
-//            break
-//            
-//        }
     }
+//    func resetGame() {
+//        var currentLevel = 1
+//        cards.removeAll()
+//    }
 }
